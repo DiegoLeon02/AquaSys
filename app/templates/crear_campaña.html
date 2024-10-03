@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Campaña Publicitaria</title>
+</head>
+<body>
+    <h1>Crear Campaña Publicitaria</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+        <label for="nombre">Nombre de la Campaña</label>
+        {{ form.nombre(size=32) }}<br>
+
+        <label for="objetivo">Objetivo</label>
+        {{ form.objetivo(size=32) }}<br>
+
+        <label for="fecha_inicio">Fecha de Inicio</label>
+        {{ form.fecha_inicio() }}<br>
+
+        <label for="fecha_fin">Fecha de Fin</label>
+        {{ form.fecha_fin() }}<br>
+
+        <label for="texto_principal">Texto Principal</label>
+        {{ form.texto_principal() }}<br>
+
+        <label for="multimedia">Multimedia (Opcional)</label>
+        {{ form.multimedia() }}<br>
+
+        <button type="submit">Crear Campaña</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h2>Campañas Existentes</h2>
+    <ul>
+        {% for campana in Campaign.query.all() %}
+        <li>{{ campana.nombre }} - {{ campana.objetivo }}
+            <form action="{{ url_for('eliminar_campana', id=campana.id) }}" method="POST">
+                <button type="submit">Eliminar</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
