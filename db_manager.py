@@ -1,12 +1,12 @@
 import mysql.connector
 
-# Conectar a la base de datos MySQL
+# Conectar base de datos MySQL
 def conectar_db():
     conn = mysql.connector.connect(
-        host='localhost',  # Cambia según tu configuración
-        user='root',       
-        password='1234',  
-        database='napoles'
+        host='localhost',  
+        user='root',     
+        password='1234', 
+        database='napoles'  
     )
     return conn
 
@@ -147,4 +147,3 @@ def crear_embarque(usuario_id, fecha_embarque, destino, estado, contenido, fecha
                    (usuario_id, fecha_embarque, destino, estado, contenido, fecha_entrega_estimada))
     conn.commit()
     conn.close()
-

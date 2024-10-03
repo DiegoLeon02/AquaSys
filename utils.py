@@ -40,3 +40,4 @@ class CourseManager:
 
     def delete_course(self, course_id):
         self.db.execute_query("DELETE FROM courses WHERE id = ?", (course_id,))
+
