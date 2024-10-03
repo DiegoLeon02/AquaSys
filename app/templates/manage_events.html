@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Gestión de Eventos</h2>
+
+    <form id="eventoForm" action="/crear_evento" method="POST">
+        <label for="nombre">Nombre del evento:</label>
+        <input type="text" id="nombre" name="nombre">
+
+        <label for="ubicacion">Ubicación del evento:</label>
+        <input type="text" id="ubicacion" name="ubicacion">
+
+        <label for="fecha">Fecha del evento:</label>
+        <input type="date" id="fecha" name="fecha">
+
+        <input type="submit" value="Crear evento">
+    </form>
+
+</body>
+</html>
