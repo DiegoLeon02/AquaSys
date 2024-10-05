@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Evento</title>
+    <script src="../static/eventos.js" defer></script>
+</head>
+<body>
+    <h1>Crear Nuevo Evento</h1>
+    <form id="crearEventoForm">
+        <label for="nombre">Nombre del Evento:</label>
+        <input type="text" id="nombre" required>
+        <br>
+        <label for="fecha">Fecha del Evento:</label>
+        <input type="datetime-local" id="fecha" required>
+        <br>
+        <label for="lugar">Lugar:</label>
+        <input type="text" id="lugar" required>
+        <br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" required></textarea>
+        <br>
+        <button type="submit">Crear Evento</button>
+    </form>
+    <p id="mensaje"></p>
+</body>
+</html>

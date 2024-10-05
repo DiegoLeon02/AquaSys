@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Empleados</title>
+    <script src="../static/empleados.js" defer></script>
+</head>
+<body>
+    <h1>Crear Perfil de Empleado</h1>
+
+    <form id="crearPerfilForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+        <br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" required>
+        <br>
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" required>
+        <br>
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fecha_nacimiento" required>
+        <br>
+        <label for="cedula">Cédula:</label>
+        <input type="text" id="cedula" required>
+        <br>
+        <label for="lugar_residencia">Lugar de Residencia:</label>
+        <input type="text" id="lugar_residencia">
+        <br>
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo">
+        <br>
+        <button type="submit">Crear Perfil</button>
+    </form>
+    <p id="mensajeCreacion"></p>
+</body>
+</html>

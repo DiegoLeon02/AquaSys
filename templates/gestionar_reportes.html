@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Reportes</title>
+    <script src="../static/reportes.js" defer></script>
+</head>
+<body>
+    <h1>Reportes de Actividad de Inicio de Sesión</h1>
+
+    <form id="generarReporteForm">
+        <label for="parametros">Parámetros (ej. fecha, usuario):</label>
+        <input type="text" id="parametros" required>
+        <button type="submit">Generar Reporte</button>
+    </form>
+    <p id="mensajeGeneracion"></p>
+
+    <h2>Eliminar Reporte</h2>
+    <form id="eliminarReporteForm">
+        <label for="reporteId">ID del Reporte:</label>
+        <input type="text" id="reporteId" required>
+        <button type="submit">Eliminar Reporte</button>
+    </form>
+    <p id="mensajeEliminacion"></p>
+</body>
+</html>

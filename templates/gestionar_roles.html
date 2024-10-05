@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Roles y Permisos</title>
+    <script src="../static/roles.js" defer></script>
+</head>
+<body>
+    <h1>Gestionar Roles y Permisos</h1>
+
+    <h2>Lista de Roles Existentes</h2>
+    <ul id="rolesList"> 
+    </ul>
+
+    <h2>Crear Nuevo Rol</h2>
+    <form id="crearRolForm">
+        <label for="nuevoRol">Nombre del Rol:</label>
+        <input type="text" id="nuevoRol" required>
+
+        <label for="permisos">Permisos (separados por comas):</label>
+        <input type="text" id="permisos" required>
+
+        <button type="submit">Crear Rol</button>
+    </form>
+    <p id="mensajeCreacion"></p>
+
+    <h2>Eliminar Rol</h2>
+    <form id="eliminarRolForm">
+        <label for="rolAEliminar">Nombre del Rol a Eliminar:</label>
+        <input type="text" id="rolAEliminar" required>
+        <button type="submit">Eliminar Rol</button>
+    </form>
+    <p id="mensajeEliminacion"></p>
+</body>
+</html>
