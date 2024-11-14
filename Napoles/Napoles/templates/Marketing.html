@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Marketing - Inicio{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Módulo de Marketing</h1>
+    <p>Bienvenido al módulo de marketing. Aquí puedes enviar encuestas, programar publicaciones y analizar campañas publicitarias.</p>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'enviar_encuesta' %}">Enviar Encuesta de Satisfacción</a></li>
+            <li><a href="{% url 'programar_publicacion' %}">Programar Publicación en Redes Sociales</a></li>
+            <li><a href="{% url 'lista_campanias' %}">Analizar Campañas Publicitarias</a></li>
+        </ul>
+    </nav>
+
+    {% if form %}
+        <h2>{{ title }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">{{ button_text }}</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Campaña Publicitaria{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Crear Campaña Publicitaria</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Campaña</button>
+    </form>
+</div>
+{% endblock %}
