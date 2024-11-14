@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Campañas Publicitarias{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Lista de Campañas Publicitarias</h2>
+    
+    
+    <div class="mb-3">
+        <a href="{% url 'crear_campania' %}" class="btn btn-success">Agregar Nueva Campaña</a>
+    </div>
+
+   
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Fin</th>
+                <th>Presupuesto</th>
+                <th>Resultado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for campania in campanias %}
+            <tr>
+                <td>{{ campania.nombre }}</td>
+                <td>{{ campania.fecha_inicio|date:"d-m-Y" }}</td>
+                <td>{{ campania.fecha_fin|date:"d-m-Y" }}</td>
+                <td>${{ campania.presupuesto }}</td>
+                <td>{{ campania.resultado|default:"N/A" }}</td>
+                <td>
+                    <a href="{% url 'analizar_campania' campania.id %}" class="btn btn-primary btn-sm">Analizar</a>
+                    <a href="{% url 'editar_campania' campania.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{% url 'eliminar_campania' campania.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No hay campañas publicitarias registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

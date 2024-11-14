@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfil</title>
+</head>
+<body>
+    <h1>{{ form.instance.pk|yesno:"Editar perfil,Crear perfil" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
+
+
+{% endblock %}

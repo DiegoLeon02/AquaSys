@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Reporte</title>
+</head>
+<body>
+    <header>
+        <h1>Detalles del Reporte</h1>
+    </header>
+
+    <main>
+        <p><strong>ID:</strong> {{ reporte.id }}</p>
+        <p><strong>Fecha:</strong> {{ reporte.fecha }}</p>
+        <p><strong>Tipo:</strong> {{ reporte.get_tipo_display }}</p>
+        <p><strong>Descripción:</strong> {{ reporte.descripcion }}</p>
+        <a href="{% url 'lista_reportes' %}">Volver a Reportes</a>
+    </main>
+</body>
+</html>
+
+{% endblock %}

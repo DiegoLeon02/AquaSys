@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="inicio-page">
+    <header class="inicio-header">
+        <div class="inicio-overlay">
+            <h1>Bienvenido a Embarques Napoles S.A</h1>
+            <p>Tu solución confiable para envíos nacionales e internacionales</p>
+            <a href="#services" class="inicio-cta-button">Conoce Nuestros Servicios</a>
+        </div>
+    </header>
+
+    <section id="about" class="inicio-section">
+        <h2>Sobre Nosotros</h2>
+        <p>Somos una empresa dedicada a brindar servicios de transporte y logística para empresas y particulares. Con una amplia red y experiencia, aseguramos que tus envíos lleguen a su destino de manera rápida y segura.</p>
+    </section>
+
+    <section id="services" class="inicio-section">
+        <h2>Servicios</h2>
+        <ul>
+            <li>Envíos Nacionales</li>
+            <li>Transporte Internacional</li>
+            <li>Logística Personalizada</li>
+            <li>Seguimiento de Envíos en Tiempo Real</li>
+        </ul>
+    </section>
+</div>
+
+<style>
+ 
+
+    .inicio-page {
+        font-family: Arial, sans-serif;
+        color: blue;
+        
+    }
+
+    .inicio-header {
+        background-image: url('{% static "img/embarques.png" %}');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
+
+    .inicio-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .inicio-header h1 {
+        font-size: 3em;
+    }
+
+    .inicio-cta-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #ff6600;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .inicio-cta-button:hover {
+        background-color: #e65c00;
+    }
+
+    .inicio-section {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .inicio-section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .inicio-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .inicio-section li {
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+</style>
+{% endblock %}

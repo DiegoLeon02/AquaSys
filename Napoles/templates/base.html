@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <title>{% block title %}Ferretería{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/main-styles.css' %}" />
+    {% block extra_head %} {% endblock %}
+</head>
+
+<style>
+    .navbar {
+        margin: 25px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #007bff, #66b2ff, #a278ff, #ff87ca);
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+
+        padding: 1rem;
+        box-shadow: 0 4px 2px -2px gray;
+    }
+
+    .navbar .navbar-brand {
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .navbar .navbar-nav {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        flex-grow: 1;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar .nav-item {
+        margin-left: 20px;
+    }
+
+    .navbar .nav-link {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+
+    .navbar .nav-link:hover {
+        background-color: #0056b3;
+        color: white;
+        border-radius: 4px;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .sub-menu-wrap {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        z-index: 10;
+        width: 250px;
+    }
+
+    .sub-menu-wrap.open-menu {
+        display: block;
+    }
+
+    .sub-menu {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+
+    .sub-menu .user-info {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .sub-menu .dropdown-item {
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link nav-icon" onclick="toggleMenu(event)">
+                            <img src="{% static 'img/Embarque.jpg' %}" alt="User Avatar" class="avatar img-fluid rounded-circle">
+                        </a>
+                        <div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu border rounded">
+                                <div class="user-info">
+                                    <img src="{% static 'img/Embarque.jpg' %}" class="avatar img-fluid rounded-circle mb-2">
+                                    <h3>Hola! USER</h3>
+                                </div>
+                                <hr>
+                                <a href="#" class="dropdown-item sub-menu-link">
+                                    <i class="fa fa-user me-2"></i>Perfil
+                                </a>
+                                <a href="#" class="dropdown-item sub-menu-link">
+                                    <i class="fa fa-cog me-2"></i>Configuraciones
+                                </a>
+                                <form method="POST" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item sub-menu-link">
+                                        <i class="fa fa-sign-out-alt me-2"></i>Cerrar Sesión
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'administrador' %}">Administrador</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Embarques' %}">Embarques</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Eventos' %}">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Empleados' %}">Empleados</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Marketing' %}">Marketing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'reportes' %}">Reportes</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content main-content">
+        <div class="container mt-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+       
+        function toggleMenu(event) {
+            event.preventDefault();
+            const subMenu = document.getElementById('subMenu');
+            subMenu.classList.toggle("open-menu");
+            event.stopPropagation();
+
+            document.addEventListener('click', (e) => {
+                if (!subMenu.contains(e.target)) {
+                    subMenu.classList.remove("open-menu");
+                }
+            });
+        }
+
+        
+        document.querySelector("#sidebar-toggle").addEventListener("click", function () {
+            document.querySelector(".main").classList.toggle("collapsed");
+        });
+    </script>
+</body>
+</html>
+

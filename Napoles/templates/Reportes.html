@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Actividad y Embarques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .btn {
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reportes de Actividad de Inicio de Sesión</h1>
+    
+    {% if actividades %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Fecha y Hora</th>
+                    <th>Resultado</th>
+                    <th>Mensaje</th>
+                    <th>Exportar PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for actividad in actividades %}
+                    <tr>
+                        <td>{{ actividad.id }}</td>
+                        <td>{{ actividad.usuario }}</td>
+                        <td>{{ actividad.timestamp }}</td>
+                        <td>{{ actividad.exitoso|yesno:"Exitoso,Fallido" }}</td>
+                        <td>{{ actividad.mensaje }}</td>
+                        <td><a href="{% url 'descargar_pdf_login_activity' actividad.id %}" class="btn">Exportar PDF</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay actividades de inicio de sesión registradas.</p>
+    {% endif %}
+
+    <h1>Reportes de Embarques</h1>
+    
+    {% if embarques %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Número de Embarque</th>
+                    <th>Estado</th>
+                    <th>Exportador</th>
+                    <th>Importador</th>
+                    <th>Exportar PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for embarque in embarques %}
+                    <tr>
+                        <td>{{ embarque.numero_embarque }}</td>
+                        <td>{{ embarque.estado }}</td>
+                        <td>{{ embarque.exportador }}</td>
+                        <td>{{ embarque.importador }}</td>
+                        <td><a href="{% url 'descargar_pdf_embarque' embarque.id %}" class="btn">Exportar PDF</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay embarques registrados.</p>
+    {% endif %}
+</body>
+</html>
+
+
+{% endblock %}
