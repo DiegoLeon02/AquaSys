@@ -1,16 +1,22 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from .models import Empleado
 from .forms import EmpleadoForm
 
-# Create your views here.
-
-def Empleados(request):
-    return render(request, 'Empleados.html')  
-
 # Vista para mostrar la lista de empleados
 def lista_empleados(request):
-    empleados = Empleado.objects.all().order_by('fecha_nacimiento')
-    return render(request, 'empleados.html', {'empleados': empleados})
+    ordenar_por = request.GET.get('ordenar', None)
+    if ordenar_por == 'nombre':
+        empleados = Empleado.objects.all().order_by('nombre')  
+    else:
+        empleados = Empleado.objects.all().order_by('fecha_nacimiento')  
+
+    # Paginación
+    paginator = Paginator(empleados, 10)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'empleados.html', {'page_obj': page_obj})
 
 # Vista para crear un empleado
 def crear_empleado(request):

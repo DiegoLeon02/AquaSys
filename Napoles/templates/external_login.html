@@ -7,33 +7,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/external_login.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            background-size: 200% 200%;
+            animation: gradientBG 8s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            animation: titleBounce 1.5s infinite alternate;
+        }
+
+        @keyframes titleBounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        
+        h1 {
+            font-size: 2rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        
+        .btn-primary {
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(120deg, #66a6ff, #89f7fe);
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(102, 166, 255, 0.5);
+        }
+
+        
+        form input {
+            border-radius: 0.75rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        form input:focus {
+            border-color: #66a6ff;
+            box-shadow: 0px 5px 10px rgba(102, 166, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        
+        .text-danger {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #e63946;
+        }
+    </style>
     <title>Login</title>
 </head>
 <body>
-<div class="wrapper">
-    <div class="container main">
-        <div class="row">
-            <div class="col-md-6 side-image">
-                <img src="{% static 'img/Embarque.jpg' %}" alt="">
-                <div class="text text-white">
-                    <h1>Bienvenido <i>Napoles S.A</i></h1>
-                </div>
-            </div>
-            <div class="col-md-6 right">
-                <div class="input-box">
-                    <header>Inicio de sesión</header>
-                    <form method="post" class="form-group">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="input-field">
-                            <input type="submit" class="submit" value="Iniciar sesión">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <h2 class="main-title">NAPOLES TRANSPORTE S.A.</h2>
+        <h1>Inicio de Sesión</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+        <p class="text-danger mt-3">{{ form.non_field_errors }}</p>
     </div>
-</div>
 
 <script>
     function togglePassword() {

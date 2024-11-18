@@ -2,10 +2,9 @@
 
 {% load static %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Eventos de Embarques{% endblock %}
 
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,39 +12,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventos de Embarques</title>
     <style>
-      
-       body {
+        
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             background-color: #f4f7fc;
             color: #333;
         }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 20px auto;
         }
-
         .header {
             font-size: 24px;
             font-weight: bold;
             color: #333;
         }
-
         .subheader {
             font-size: 14px;
             color: #777;
             margin-top: 8px;
         }
-
         .actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
         }
-
         .actions button, .actions .btn {
             padding: 10px 16px;
             background-color: #0073e6;
@@ -55,17 +49,14 @@
             cursor: pointer;
             font-weight: bold;
         }
-
         .actions .btn {
             background-color: #e6e6e6;
             color: #333;
         }
-
         .tabs {
             display: flex;
             margin-top: 20px;
         }
-
         .tab {
             padding: 10px 20px;
             border-bottom: 3px solid transparent;
@@ -73,12 +64,10 @@
             font-weight: bold;
             cursor: pointer;
         }
-
         .tab.active {
             border-color: #0073e6;
             color: #0073e6;
         }
-
         .search-bar {
             width: 100%;
             padding: 10px;
@@ -87,13 +76,11 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-
         .events-header {
             font-size: 14px;
             color: #555;
             margin-bottom: 10px;
         }
-
         .event-item {
             display: flex;
             padding: 20px;
@@ -103,91 +90,32 @@
             margin-bottom: 10px;
             position: relative;
         }
-
         .event-column {
             flex: 1;
             padding: 0 10px;
             font-size: 14px;
             color: #555;
         }
-
         .event-column h4 {
             font-size: 12px;
             font-weight: bold;
             color: #333;
             margin: 0;
         }
-
         .event-column .event-number {
             color: #0073e6;
             text-decoration: none;
             font-weight: bold;
         }
-
         .icon {
             font-size: 20px;
             color: #555;
             margin-right: 8px;
             vertical-align: middle;
         }
-
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 500px;
-        }
-
-        .modal input {
-            width: 100%;
-            margin-top: 10px;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        .modal button {
-            padding: 8px 16px;
-            margin-top: 10px;
-            background-color: #0073e6;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .delete-btn, .edit-btn {
-            position: absolute;
-            top: 10px;
-            cursor: pointer;
-        }
-
-        .delete-btn {
-            right: 10px;
-            color: red;
-        }
-
-        .edit-btn {
-            right: 40px;
-            color: green;
-        }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="header">Eventos de Embarques</div>
         <div class="subheader">Aquí puede ver todos los eventos recientes relacionados con sus embarques, con opciones para búsqueda y ordenamiento.</div>
@@ -196,15 +124,23 @@
             <a href="{% url 'crear_evento' %}" class="btn">Nuevo Evento +</a>
             <div>
                 <button class="btn" onclick="window.print()">Imprimir</button>
-                <button class="btn" onclick="sortEvents()">Ordenar</button>
+                <a href="{% url 'lista_eventos' %}?order={% if current_order == 'asc' %}desc{% else %}asc{% endif %}" class="btn">
+                    Ordenar por Fecha {% if current_order == 'asc' %}⬇️{% else %}⬆️{% endif %}
+                </a>
             </div>
         </div>
 
         <div class="tabs">
-            <div class="tab active">Eventos</div>
+            <div class="tab active">
+                Orden actual: 
+                {% if current_order == 'asc' %}
+                    Ascendente (más antiguos primero)
+                {% else %}
+                    Descendente (más recientes primero)
+                {% endif %}
+            </div>
         </div>
 
-        <input type="text" class="search-bar" placeholder="Buscar eventos de embarques">
 
         <div class="events-header">MOSTRANDO EVENTOS</div>
 
@@ -240,12 +176,7 @@
             </div>
             {% endfor %}
         </div>
-
-       
     </div>
-
 </body>
 </html>
-
-
 {% endblock %}

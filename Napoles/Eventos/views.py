@@ -9,8 +9,22 @@ def Eventos(request):
 
 # Vista para mostrar la lista de eventos
 def lista_eventos(request):
-    eventos = Evento.objects.all().order_by('fecha')
-    return render(request, 'eventos.html', {'eventos': eventos})
+    query = request.GET.get('q', '')
+
+    order = request.GET.get('order', 'asc')  
+
+    eventos = Evento.objects.filter(nombre__icontains=query) if query else Evento.objects.all()
+    
+    if order == 'asc':
+        eventos = eventos.order_by('fecha')  
+    else:
+        eventos = eventos.order_by('-fecha')  
+
+    return render(request, 'eventos.html', {
+        'eventos': eventos,
+        'query': query,
+        'current_order': order
+    })
 
 # Vista para crear un evento
 def crear_evento(request):

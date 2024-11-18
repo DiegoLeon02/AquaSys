@@ -191,25 +191,18 @@
     <div class="container">
         <div class="header">Gestión de Empleados</div>
         <div class="subheader">Aquí puede ver todos los empleados registrados, con opciones para búsqueda y ordenamiento.</div>
-
+    
         <div class="actions">
             <a href="{% url 'crear_empleado' %}" class="btn">Nuevo Empleado +</a>
             <div>
-                <button class="btn" onclick="window.print()">Imprimir</button>
-                <button class="btn" onclick="sortEmployees()">Ordenar</button>
+                <a href="?ordenar=nombre" class="btn">Ordenar Alfabéticamente</a>
             </div>
         </div>
-
-        <div class="tabs">
-            <div class="tab active">Empleados</div>
-        </div>
-
-        <input type="text" class="search-bar" placeholder="Buscar empleados">
-
+    
         <div class="employees-header">MOSTRANDO EMPLEADOS</div>
-
+    
         <div id="employees-list">
-            {% for empleado in empleados %}
+            {% for empleado in page_obj %}
             <div class="employee-item">
                 <div class="employee-column">
                     <h4>NOMBRE</h4>
@@ -237,14 +230,23 @@
                     {{ empleado.email }}
                 </div>
                 <a href="{% url 'editar_empleado' empleado.id %}" class="edit-btn">✏️</a>
-                <form action="{% url 'eliminar_empleado' empleado.id %}" method="post" style="display: inline;">
+                <form action="{% url 'eliminar_empleado' empleado.id %}" method="post" style="display: inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este empleado?');">
                     {% csrf_token %}
-                    <button type="submit" class="delete-btn"> ❌</button>
+                    <button type="submit" class="delete-btn">❌</button>
                 </form>
             </div>
             {% endfor %}
         </div>
-        
+    
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?ordenar={{ request.GET.ordenar }}&page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+            <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?ordenar={{ request.GET.ordenar }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+            {% endif %}
+        </div>
     </div>
 
 </body>

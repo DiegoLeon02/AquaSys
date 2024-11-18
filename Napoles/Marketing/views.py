@@ -14,7 +14,7 @@ def enviar_encuesta(request):
         form = EncuestaSatisfaccionForm()
     return render(request, 'enviar_encuesta.html', {'form': form})
 
-# Vista para programar publicaciones en redes sociales
+
 def programar_publicacion(request):
     if request.method == 'POST':
         form = PublicacionRedesSocialesForm(request.POST)
@@ -25,7 +25,7 @@ def programar_publicacion(request):
         form = PublicacionRedesSocialesForm()
     return render(request, 'programar_publicacion.html', {'form': form})
 
-# Vista para analizar campañas publicitarias
+
 def analizar_campania(request, campania_id):
     campania = get_object_or_404(CampaniaPublicitaria, id=campania_id)
     form = CampaniaPublicitariaForm(instance=campania)
@@ -36,7 +36,6 @@ def analizar_campania(request, campania_id):
             return redirect('lista_campanias')
     return render(request, 'analizar_campania.html', {'form': form, 'campania': campania})
 
-# Vista para listar todas las campañas publicitarias
 def lista_campanias(request):
     campanias = CampaniaPublicitaria.objects.all()
     return render(request, 'lista_campanias.html', {'campanias': campanias})
@@ -74,3 +73,26 @@ def eliminar_campania(request, campania_id):
         campania.delete()
         return redirect('lista_campanias')
     return render(request, 'confirmar_eliminar.html', {'campania': campania})
+
+def lista_publicaciones(request):
+    publicaciones = PublicacionRedesSociales.objects.all().order_by('fecha_programada')
+    return render(request, 'lista_publicaciones.html', {'publicaciones': publicaciones})
+
+def editar_publicacion(request, publicacion_id):
+    publicacion = get_object_or_404(PublicacionRedesSociales, id=publicacion_id)
+    if request.method == 'POST':
+        form = PublicacionRedesSocialesForm(request.POST, instance=publicacion)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_publicaciones')
+    else:
+        form = PublicacionRedesSocialesForm(instance=publicacion)
+    return render(request, 'editar_publicacion.html', {'form': form, 'publicacion': publicacion})
+
+
+def eliminar_publicacion(request, publicacion_id):
+    publicacion = get_object_or_404(PublicacionRedesSociales, id=publicacion_id)
+    if request.method == 'POST':
+        publicacion.delete()
+        return redirect('lista_publicaciones')
+    return render(request, 'confirmar_eliminar_publicacion.html', {'publicacion': publicacion})

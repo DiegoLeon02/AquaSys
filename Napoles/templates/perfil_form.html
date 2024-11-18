@@ -7,19 +7,24 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Perfil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>{{ form.instance.pk|yesno:"Editar perfil,Crear perfil" }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
+    <div class="container mt-5">
+        <h1>{{ form.instance.id|default:"Crear Nuevo Perfil" }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'lista_perfiles' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 </body>
 </html>
-
 
 {% endblock %}

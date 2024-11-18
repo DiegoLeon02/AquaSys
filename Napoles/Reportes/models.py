@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from Embarques.models import Embarque  
-
+from Administrador.models import LoginActivity
+  
 class LoginActivity(models.Model):
     usuario = models.CharField(max_length=100)  
     timestamp = models.DateTimeField(default=timezone.now)

@@ -32,7 +32,6 @@
                 <td>${{ campania.presupuesto }}</td>
                 <td>{{ campania.resultado|default:"N/A" }}</td>
                 <td>
-                    <a href="{% url 'analizar_campania' campania.id %}" class="btn btn-primary btn-sm">Analizar</a>
                     <a href="{% url 'editar_campania' campania.id %}" class="btn btn-warning btn-sm">Editar</a>
                     <form action="{% url 'eliminar_campania' campania.id %}" method="post" style="display:inline;">
                         {% csrf_token %}

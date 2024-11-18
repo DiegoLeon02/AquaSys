@@ -23,14 +23,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'config',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Administrador',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Embarques',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Eventos',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Empleados',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Capacitacion',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Marketing',  # Agrega esta línea para que Django reconozca tu aplicación
-    'Reportes',  # Agrega esta línea para que Django reconozca tu aplicación
+    'config',  
+    'Administrador',  
+    'Embarques', 
+    'Eventos', 
+    'Empleados',  
+    'Capacitacion',  
+    'Marketing',  
+    'Reportes',  
 ]
 
 MIDDLEWARE = [

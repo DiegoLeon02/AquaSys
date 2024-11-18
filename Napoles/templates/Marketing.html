@@ -4,25 +4,130 @@
 {% block title %}Marketing - Inicio{% endblock %}
 
 {% block content %}
+<style>
+    
+    body {
+        background-color: #f9f9f9;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    h1, h5 {
+        font-weight: bold;
+    }
+
+    p {
+        color: #555;
+    }
+
+    
+    .card {
+        border: none;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-radius: 10px;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    
+    .card i {
+        transition: color 0.3s;
+    }
+
+    .card:hover i {
+        color: #ff5722;
+    }
+
+   
+    .btn-outline-primary {
+        border-radius: 30px;
+        font-weight: bold;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+    }
+
+    .social-buttons a {
+        border-radius: 50px;
+        padding: 15px 30px;
+        transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .social-buttons a:hover {
+        transform: scale(1.1);
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+
+    .mt-4, .mt-5 {
+        margin-top: 2rem !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+</style>
+
 <div class="container">
-    <h1>Módulo de Marketing</h1>
-    <p>Bienvenido al módulo de marketing. Aquí puedes enviar encuestas, programar publicaciones y analizar campañas publicitarias.</p>
+    <h1 class="text-center mt-4">Módulo de Marketing</h1>
+    <p class="text-center">Bienvenido al módulo de marketing. Aquí puedes enviar encuestas, programar publicaciones y analizar campañas publicitarias.</p>
 
-    <nav>
-        <ul>
-            <li><a href="{% url 'enviar_encuesta' %}">Enviar Encuesta de Satisfacción</a></li>
-            <li><a href="{% url 'programar_publicacion' %}">Programar Publicación en Redes Sociales</a></li>
-            <li><a href="{% url 'lista_campanias' %}">Analizar Campañas Publicitarias</a></li>
-        </ul>
-    </nav>
+   
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <a href="{% url 'enviar_encuesta' %}" class="card text-decoration-none shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Enviar Encuesta</h5>
+                    <p class="card-text">Recoge feedback valioso de tus clientes mediante encuestas de satisfacción.</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'programar_publicacion' %}" class="card text-decoration-none shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Programar Publicaciones</h5>
+                    <p class="card-text">Mantén una presencia activa en redes sociales con publicaciones programadas.</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'lista_campanias' %}" class="card text-decoration-none shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Analizar Campañas</h5>
+                    <p class="card-text">Evalúa la efectividad de tus campañas publicitarias con métricas detalladas.</p>
+                </div>
+            </a>
+        </div>
+    </div>
 
-    {% if form %}
-        <h2>{{ title }}</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">{{ button_text }}</button>
-        </form>
-    {% endif %}
+    
+    <div class="text-center mt-5">
+        <a href="{% url 'lista_publicaciones' %}" class="btn btn-outline-primary btn-lg">
+            <i class="fas fa-list"></i> Ver Publicaciones Programadas
+        </a>
+    </div>
+
+  
+    <div class="social-buttons mt-5 text-center">
+        <h4>Síguenos en nuestras redes sociales</h4>
+        <a href="https://www.instagram.com" target="_blank" class="btn btn-outline-danger btn-lg mx-2">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="btn btn-outline-primary btn-lg mx-2">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+        <a href="https://twitter.com" target="_blank" class="btn btn-outline-info btn-lg mx-2">
+            <i class="fab fa-twitter"></i> X (Twitter)
+        </a>
+    </div>
 </div>
 {% endblock %}
+

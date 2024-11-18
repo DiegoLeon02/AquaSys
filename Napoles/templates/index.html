@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
@@ -16,31 +14,49 @@
 
     <section id="about" class="inicio-section">
         <h2>Sobre Nosotros</h2>
-        <p>Somos una empresa dedicada a brindar servicios de transporte y logística para empresas y particulares. Con una amplia red y experiencia, aseguramos que tus envíos lleguen a su destino de manera rápida y segura.</p>
+        <div class="about-container">
+            <img src="https://th.bing.com/th/id/OIP.nIlMafxceWQ1SLG04LRBxgHaD3?rs=1&pid=ImgDetMain" alt="Sobre Nosotros" class="about-image animated-img">
+            <p class="about-text">Somos una empresa dedicada a brindar servicios de transporte y logística para empresas y particulares. Con una amplia red y experiencia, aseguramos que tus envíos lleguen a su destino de manera rápida y segura.</p>
+        </div>
     </section>
 
     <section id="services" class="inicio-section">
         <h2>Servicios</h2>
-        <ul>
-            <li>Envíos Nacionales</li>
-            <li>Transporte Internacional</li>
-            <li>Logística Personalizada</li>
-            <li>Seguimiento de Envíos en Tiempo Real</li>
-        </ul>
+        <div class="services-container">
+            <div class="service-card">
+                <img src="https://th.bing.com/th/id/R.1583a0dc0a6fb7977570fb8e99875cea?rik=URRhphTUyAPh7g&riu=http%3a%2f%2facdn.architizer.com%2fthumbnails-PRODUCTION%2fe4%2fea%2fe4eacf0e5c2307ec4329b76211e488a0.jpg&ehk=rww1dN1djxQUpX6ePgeVScuEZBEWIktaivonJ2i%2biio%3d&risl=&pid=ImgRaw&r=0" alt="Envíos Nacionales" class="service-img animated-img">
+                <h3>Envíos Nacionales</h3>
+                <p>Rápidos y seguros a cualquier rincón del país.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://th.bing.com/th/id/OIP.Qvw_7a7zXwNTzI1xO-ynHgHaEC?rs=1&pid=ImgDetMain" alt="Transporte Internacional" class="service-img animated-img">
+                <h3>Transporte seguro</h3>
+                <p>Envio y manejo de contenedores.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://th.bing.com/th/id/R.0d9ccdd94e284ed4457f82db5e1525a3?rik=gSNL5ol4fhZgmw&pid=ImgRaw&r=0" alt="Logística Personalizada" class="service-img animated-img">
+                <h3>Confianza</h3>
+                <p>Soluciones pensando en tu seguridad.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://th.bing.com/th/id/R.2f4cbd5eadb3019f1d97bd41823513dc?rik=zI3XlJXaMJmzoA&pid=ImgRaw&r=0" alt="Seguimiento en Tiempo Real" class="service-img animated-img">
+                <h3>Seguimiento en Tiempo Real</h3>
+                <p>Controla cada paso de tu envío en vivo.</p>
+            </div>
+        </div>
     </section>
 </div>
 
 <style>
- 
-
+    
     .inicio-page {
-        font-family: Arial, sans-serif;
-        color: blue;
-        
+        font-family: 'Roboto', sans-serif;
+        color: #2c3e50;
     }
 
+    
     .inicio-header {
-        background-image: url('{% static "img/embarques.png" %}');
+        background-image: url('https://4.bp.blogspot.com/-KMgNxaRBBL8/WH6DfHkoiuI/AAAAAAAAEFI/Oxat2JFRrZAJjp6FSaLqWSlP2elM0GLXwCLcB/s1600/El%2Bconocimiento%2Bde%2Bembarque%2Bdefinici%25C3%25B3n%252C%2Bfunciones%2By%2Btipos.jpg');
         background-size: cover;
         background-position: center;
         height: 100vh;
@@ -49,51 +65,130 @@
         justify-content: center;
         color: white;
         text-align: center;
+        position: relative;
+        overflow: hidden;
     }
 
     .inicio-overlay {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px;
         border-radius: 8px;
+        animation: fade-in 2s ease-in-out;
     }
 
     .inicio-header h1 {
-        font-size: 3em;
+        font-size: 3.5em;
+        margin-bottom: 20px;
     }
 
     .inicio-cta-button {
         display: inline-block;
         margin-top: 20px;
-        padding: 10px 20px;
+        padding: 15px 30px;
         background-color: #ff6600;
         color: white;
         text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
+        border-radius: 50px;
+        font-size: 1.2em;
+        transition: background-color 0.3s, transform 0.3s;
     }
 
     .inicio-cta-button:hover {
         background-color: #e65c00;
+        transform: scale(1.1);
     }
 
+    
     .inicio-section {
-        padding: 40px;
+        padding: 60px 20px;
         text-align: center;
     }
 
     .inicio-section h2 {
-        font-size: 2em;
-        margin-bottom: 20px;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        color: #34495e;
     }
 
-    .inicio-section ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .inicio-section li {
+    .inicio-section p {
         font-size: 1.2em;
-        margin: 10px 0;
+        line-height: 1.8;
+        color: #7f8c8d;
+    }
+
+    
+    .about-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .about-image {
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-text {
+        max-width: 600px;
+        text-align: justify;
+    }
+
+  
+    .services-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .service-card {
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 300px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+  
+    .animated-img {
+        animation: zoom-in 1s ease-in-out;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes zoom-in {
+        from {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
     }
 </style>
 {% endblock %}
+
